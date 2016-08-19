@@ -1,0 +1,4 @@
+DeviceType	ModelName	Index	FatherNode	Display	 NodeName	 Position	        Attitude	                  Scale	     Discription    FIELD
+
+ActiveDevice	Plane.ive      0	-1		1	   9ABox       (0,0,0)	       	       (1,0,0,0)	                 1.2          Box
+End

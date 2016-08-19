@@ -1,0 +1,5 @@
+"STARTUP.obj",
+"test.obj",
+"JY901.obj" 
+TO "test" 
+RAMSIZE(256) 

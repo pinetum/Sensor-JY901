@@ -1,0 +1,420 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/23/2015  15:53:46  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL51\C51\BIN\BL51.EXE STARTUP.obj, test.obj, JY901.obj TO test RAMSIZE (256)
+
+
+MEMORY MODEL: LARGE WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  test.obj (TEST)
+  JY901.obj (JY901)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (?C?FPADD)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (?C?FPMUL)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (?C?FPDIV)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (?C?FCAST)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (PRINTF)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (?C?FPGETOPN)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (?C?FPROUND)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (?C?FPCONVERT)
+  C:\KEIL51\C51\LIB\C51FPL.LIB (?C?FTNPWR)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C_INIT)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?CLDPTR)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?CLDOPTR)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?CSTPTR)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?CSTOPTR)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?SLDIV)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?LNEG)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?LSTXDATA)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?PLDIXDATA)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?PSTXDATA)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?CCASE)
+  C:\KEIL51\C51\LIB\C51L.LIB (PUTCHAR)
+  C:\KEIL51\C51\LIB\C51L.LIB (?C?ULDIV)
+
+
+LINK MAP OF MODULE:  test (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         _DATA_GROUP_
+                    000DH     0013H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            IDATA   0022H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     0055H     UNIT         ?XD?JY901
+            XDATA   0055H     0037H     UNIT         _XDATA_GROUP_
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001EH     UNIT         ?PR?_DELAY_MS?TEST
+                    0021H     0002H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/23/2015  15:53:46  PAGE 2
+
+
+            CODE    0026H     0680H     UNIT         ?C?LIB_CODE
+            CODE    06A6H     0483H     UNIT         ?PR?PRINTF?PRINTF
+            CODE    0B29H     0403H     UNIT         ?PR?MAIN?TEST
+            CODE    0F2CH     02B4H     UNIT         ?PR?_COPESERIALDATA?JY901
+            CODE    11E0H     016AH     UNIT         ?CO?TEST
+            CODE    134AH     0093H     UNIT         ?PR?_CHARTOLONG?JY901
+            CODE    13DDH     008CH     UNIT         ?C_C51STARTUP
+            CODE    1469H     0068H     UNIT         ?C_INITSEG
+            CODE    14D1H     0044H     UNIT         ?C?LDIV
+            CODE    1515H     0042H     UNIT         ?PR?SER?TEST
+            CODE    1557H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+
+
+
+OVERLAY MAP OF MODULE:   test (?C_STARTUP)
+
+
+SEGMENT                              BIT_GROUP          DATA_GROUP          XDATA_GROUP
+  +--> CALLED SEGMENT             START    LENGTH     START    LENGTH     START    LENGTH
+-----------------------------------------------------------------------------------------
+?C_C51STARTUP                     -----    -----      -----    -----      -----    -----
+  +--> ?PR?MAIN?TEST
+  +--> ?C_INITSEG
+
+?PR?MAIN?TEST                     -----    -----      -----    -----      0055H    0001H
+  +--> ?CO?TEST
+  +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?_DELAY_MS?TEST
+
+?PR?PRINTF?PRINTF                 0020H.0  0001H.1    0008H    0005H      0056H    0030H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+*** NEW ROOT ***************************************************
+
+?PR?SER?TEST                      -----    -----      -----    -----      -----    -----
+  +--> ?PR?_COPESERIALDATA?JY901
+
+?PR?_COPESERIALDATA?JY901         -----    -----      -----    -----      -----    -----
+  +--> ?PR?_CHARTOLONG?JY901
+
+?PR?_CHARTOLONG?JY901             -----    -----      -----    -----      0086H    0006H
+
+
+
+SYMBOL TABLE OF MODULE:  test (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:13DDH         SEGMENT       ?C_C51STARTUP
+  I:0022H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/23/2015  15:53:46  PAGE 3
+
+
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:13E0H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:13DDH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:13DDH         LINE#         133
+  C:13DFH         LINE#         134
+  C:13E0H         LINE#         135
+  C:13E1H         LINE#         136
+  C:13E3H         LINE#         185
+  C:13E6H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        TEST
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:0B29H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:1515H         PUBLIC        ser
+  D:008DH         PUBLIC        TH1
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  D:008BH         PUBLIC        TL1
+  C:0003H         PUBLIC        _delay_ms
+  B:0088H.6       PUBLIC        TR1
+  B:0098H.4       PUBLIC        REN
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        i
+  -------         DO            
+  D:0004H         SYMBOL        k
+  -------         ENDDO         
+  C:0003H         LINE#         20
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/23/2015  15:53:46  PAGE 4
+
+
+  C:0003H         LINE#         21
+  C:0003H         LINE#         23
+  C:000DH         LINE#         24
+  C:0020H         LINE#         25
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          MAIN
+  -------         DO            
+  X:0055H         SYMBOL        i
+  -------         ENDDO         
+  C:0B29H         LINE#         27
+  C:0B29H         LINE#         28
+  C:0B29H         LINE#         29
+  C:0B2EH         LINE#         30
+  C:0B31H         LINE#         31
+  C:0B34H         LINE#         32
+  C:0B37H         LINE#         33
+  C:0B39H         LINE#         34
+  C:0B3BH         LINE#         35
+  C:0B3DH         LINE#         36
+  C:0B3FH         LINE#         37
+  C:0B41H         LINE#         38
+  C:0B43H         LINE#         39
+  C:0B45H         LINE#         40
+  C:0B4EH         LINE#         41
+  C:0B57H         LINE#         42
+  C:0B60H         LINE#         43
+  C:0B60H         LINE#         44
+  C:0B60H         LINE#         45
+  C:0B67H         LINE#         47
+  C:0BF1H         LINE#         49
+  C:0C69H         LINE#         51
+  C:0CE1H         LINE#         53
+  C:0D59H         LINE#         55
+  C:0D8FH         LINE#         57
+  C:0DCEH         LINE#         59
+  C:0E13H         LINE#         61
+  C:0EC6H         LINE#         63
+  C:0F29H         LINE#         65
+  -------         ENDPROC       MAIN
+  -------         PROC          SER
+  C:1515H         LINE#         68
+  C:1532H         LINE#         70
+  C:1535H         LINE#         71
+  C:1535H         LINE#         72
+  C:1537H         LINE#         73
+  C:153CH         LINE#         74
+  C:153CH         LINE#         77
+  -------         ENDPROC       SER
+  -------         ENDMOD        TEST
+
+  -------         MODULE        JY901
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  X:000DH         PUBLIC        stcGPSV
+  X:0015H         PUBLIC        stcDStatus
+  X:001DH         PUBLIC        stcLonLat
+  X:0025H         PUBLIC        stcAngle
+  X:002DH         PUBLIC        stcAcc
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/23/2015  15:53:46  PAGE 5
+
+
+  C:134AH         PUBLIC        _CharToLong
+  X:0035H         PUBLIC        stcPress
+  X:003DH         PUBLIC        stcTime
+  X:0045H         PUBLIC        stcMag
+  C:0F2CH         PUBLIC        _CopeSerialData
+  X:004DH         PUBLIC        stcGyro
+  -------         PROC          _CHARTOLONG
+  X:0086H         SYMBOL        Dest
+  X:0089H         SYMBOL        Source
+  C:134AH         LINE#         13
+  C:1355H         LINE#         14
+  C:1355H         LINE#         15
+  C:1374H         LINE#         16
+  C:1398H         LINE#         17
+  C:13BCH         LINE#         18
+  -------         ENDPROC       _CHARTOLONG
+  -------         PROC          _COPESERIALDATA
+  D:0007H         SYMBOL        ucData
+  -------         DO            
+  X:0000H         SYMBOL        ucRxBuffer
+  X:000CH         SYMBOL        ucRxCnt
+  -------         ENDDO         
+  C:0F2CH         LINE#         20
+  C:0F2CH         LINE#         21
+  C:0F2CH         LINE#         25
+  C:0F3FH         LINE#         26
+  C:0F47H         LINE#         27
+  C:0F47H         LINE#         28
+  C:0F4AH         LINE#         30
+  C:0F4AH         LINE#         31
+  C:0F54H         LINE#         33
+  C:0F54H         LINE#         34
+  C:0F8BH         LINE#         35
+  C:0F8BH         LINE#         36
+  C:0F93H         LINE#         37
+  C:0F9BH         LINE#         38
+  C:0FA3H         LINE#         39
+  C:0FABH         LINE#         40
+  C:0FB3H         LINE#         41
+  C:0FBBH         LINE#         42
+  C:0FCAH         LINE#         43
+  C:0FCDH         LINE#         44
+  C:0FE1H         LINE#         45
+  C:0FF5H         LINE#         46
+  C:1004H         LINE#         47
+  C:1007H         LINE#         48
+  C:101BH         LINE#         49
+  C:102FH         LINE#         50
+  C:103EH         LINE#         51
+  C:1041H         LINE#         52
+  C:1055H         LINE#         53
+  C:1069H         LINE#         54
+  C:107DH         LINE#         55
+  C:108CH         LINE#         56
+  C:108FH         LINE#         57
+  C:10A3H         LINE#         58
+  C:10B7H         LINE#         59
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/23/2015  15:53:46  PAGE 6
+
+
+  C:10CBH         LINE#         60
+  C:10DAH         LINE#         61
+  C:10DCH         LINE#         62
+  C:10F0H         LINE#         63
+  C:1104H         LINE#         64
+  C:1118H         LINE#         65
+  C:112CH         LINE#         66
+  C:112FH         LINE#         67
+  C:1141H         LINE#         68
+  C:1158H         LINE#         69
+  C:116CH         LINE#         70
+  C:116EH         LINE#         71
+  C:1185H         LINE#         72
+  C:1199H         LINE#         73
+  C:119BH         LINE#         74
+  C:11AFH         LINE#         75
+  C:11C3H         LINE#         76
+  C:11DAH         LINE#         77
+  C:11DAH         LINE#         78
+  C:11DAH         LINE#         79
+  C:11DFH         LINE#         80
+  C:11DFH         LINE#         81
+  -------         ENDPROC       _COPESERIALDATA
+  -------         ENDMOD        JY901
+
+  -------         MODULE        ?C?FPADD
+  C:002DH         PUBLIC        ?C?FPADD
+  C:0029H         PUBLIC        ?C?FPSUB
+  -------         ENDMOD        ?C?FPADD
+
+  -------         MODULE        ?C?FPMUL
+  C:011EH         PUBLIC        ?C?FPMUL
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FPDIV
+  C:0227H         PUBLIC        ?C?FPDIV
+  -------         ENDMOD        ?C?FPDIV
+
+  -------         MODULE        ?C?FCAST
+  C:02CEH         PUBLIC        ?C?FCASTC
+  C:02C9H         PUBLIC        ?C?FCASTI
+  C:02C4H         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        PRINTF
+  X:0056H         PUBLIC        ?_PRINTF?BYTE
+  X:0056H         PUBLIC        ?_SPRINTF?BYTE
+  C:0711H         PUBLIC        _PRINTF
+  C:070BH         PUBLIC        _SPRINTF
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        ?C?FPROUND
+  C:034CH         PUBLIC        ?C?FPROUND
+  -------         ENDMOD        ?C?FPROUND
+
+  -------         MODULE        ?C?FPCONVERT
+  C:0389H         PUBLIC        ?C?FPCONVERT
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/23/2015  15:53:46  PAGE 7
+
+
+  -------         ENDMOD        ?C?FPCONVERT
+
+  -------         MODULE        ?C?FTNPWR
+  C:04BEH         PUBLIC        ?C?FTNPWR
+  -------         ENDMOD        ?C?FTNPWR
+
+  -------         MODULE        ?C?CLDPTR
+  C:04FEH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0517H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0544H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?CSTOPTR
+  C:0556H         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+  -------         MODULE        ?C?SLDIV
+  C:14D1H         PUBLIC        ?C?SLDIV
+  -------         ENDMOD        ?C?SLDIV
+
+  -------         MODULE        ?C?LNEG
+  C:0578H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+  -------         MODULE        ?C?LSTXDATA
+  C:0586H         PUBLIC        ?C?LSTXDATA
+  -------         ENDMOD        ?C?LSTXDATA
+
+  -------         MODULE        ?C?PLDIXDATA
+  C:0592H         PUBLIC        ?C?PLDIXDATA
+  -------         ENDMOD        ?C?PLDIXDATA
+
+  -------         MODULE        ?C?PSTXDATA
+  C:05A9H         PUBLIC        ?C?PSTXDATA
+  -------         ENDMOD        ?C?PSTXDATA
+
+  -------         MODULE        ?C?CCASE
+  C:05B2H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:1557H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+  -------         MODULE        ?C?ULDIV
+  C:0614H         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+Program Size: data=15.1 xdata=140 code=5500
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,110 @@
+C51 COMPILER V9.00   TEST                                                                  01/23/2015 15:53:46 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE TEST
+OBJECT MODULE PLACED IN test.OBJ
+COMPILER INVOKED BY: C:\Keil51\C51\BIN\C51.EXE test.c LARGE BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          //51单片机读取串口MPU6050模块的实例程序
+   2          //            BY:君悦智控
+   3          //   http://RobotControl.taobao.com
+   4          //测试平台：
+   5          //              51单片机开发板YL-39,芯片STC89C52
+   6          //注意:
+   7          //    1.51单片机的下载串口只有一个，同时又需要接MPU6050，因此在下载的时候需要拔下MPU6050的TX线，等程序下载
+             -成功以后再插上。
+   8          //接线方法：
+   9          //     51单片机           JY901模块
+  10          //              +5V             ----    VCC
+  11          //              TX              (不接)  RX
+  12          //              RX              ----    TX
+  13          //              GND             ----    GND
+  14          ///////////////////////////////////////////////////////
+  15          /*预处理命令*/
+  16          #include <reg52.h>                //包含单片机寄存器的头文件
+  17          #include <stdio.h>
+  18          #include "JY901.h"
+  19          
+  20          void delay_ms(unsigned short i)
+  21          {
+  22   1      unsigned short k;
+  23   1              while(i--)
+  24   1              for (k=0;k<100;k++); 
+  25   1      }
+  26          
+  27          void main(void)
+  28          {
+  29   1              unsigned char i=0;
+  30   1              TMOD=0x20;                 //用定时器设置串口波特率        9600 
+  31   1              TH1=0xfd;
+  32   1              TL1=0xfd;
+  33   1              TR1=1;
+  34   1              TI=1;
+  35   1              REN=1;          //串口初始化
+  36   1              SM0=0;
+  37   1              SM1=1;
+  38   1              EA=1;           //开启总中断
+  39   1              ES=1;
+  40   1              printf("STC89S52 Read JY901 module demo\r\n");
+  41   1              printf("-------------BY:JYZK-------------\r\n");
+  42   1              printf("---http://RobotControl.taobao.com---\r\n");
+  43   1              while(1)
+  44   1              {
+  45   2                      delay_ms(10);
+  46   2                      printf("Time:20%d-%d-%d %d:%d:%.3f\r\n",(short)stcTime.ucYear,(short)stcTime.ucMonth,
+  47   2                                      (short)stcTime.ucDay,(short)stcTime.ucHour,(short)stcTime.ucMinute,(float)stcTime.ucSecond+(float)stcT
+             -ime.usMiliSecond/1000);
+  48   2      
+  49   2                      printf("Acc:%.3f %.3f %.3f\r\n",(float)stcAcc.a[0]/32768*16,(float)stcAcc.a[1]/32768*16,(float)stcAcc.a[
+             -2]/32768*16);
+  50   2      
+  51   2                      printf("Gyro:%.3f %.3f %.3f\r\n",(float)stcGyro.w[0]/32768*2000,(float)stcGyro.w[1]/32768*2000,(float)st
+             -cGyro.w[2]/32768*2000);
+C51 COMPILER V9.00   TEST                                                                  01/23/2015 15:53:46 PAGE 2   
+
+  52   2      
+  53   2                      printf("Angle:%.3f %.3f %.3f\r\n",(float)stcAngle.Angle[0]/32768*180,(float)stcAngle.Angle[1]/32768*180,
+             -(float)stcAngle.Angle[2]/32768*180);
+  54   2      
+  55   2                      printf("Mag:%d %d %d\r\n",stcMag.h[0],stcMag.h[1],stcMag.h[2]);
+  56   2      
+  57   2                      printf("Pressure:%lx Height%.2f\r\n",stcPress.lPressure,(float)stcPress.lAltitude/100);
+  58   2      
+  59   2                      printf("DStatus:%d %d %d %d\r\n",stcDStatus.sDStatus[0],stcDStatus.sDStatus[1],stcDStatus.sDStatus[2],st
+             -cDStatus.sDStatus[3]);
+  60   2      
+  61   2                      printf("Longitude:%ldDeg%.5fm Lattitude:%ldDeg%.5fm\r\n",stcLonLat.lLon/10000000,(double)(stcLonLat.lLon
+             - % 10000000)/1e5,stcLonLat.lLat/10000000,(double)(stcLonLat.lLat % 10000000)/1e5);
+  62   2      
+  63   2                      printf("GPSHeight:%.1fm GPSYaw:%.1fDeg GPSV:%.3fkm/h\r\n\r\n",(float)stcGPSV.sGPSHeight/10,(float)stcGPS
+             -V.sGPSYaw/10,(float)stcGPSV.lGPSVelocity/1000);
+  64   2                              
+  65   2              }       
+  66   1      }
+  67                    
+  68          void ser() interrupt 4
+  69          {
+  70   1              if (RI)
+  71   1              {         
+  72   2                      RI=0;
+  73   2                       CopeSerialData(SBUF);      
+  74   2                }
+  75   1                
+  76   1          
+  77   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1123    ----
+   CONSTANT SIZE    =    362    ----
+   XDATA SIZE       =   ----       1
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
