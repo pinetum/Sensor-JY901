@@ -124,9 +124,15 @@ class RealTimeCube:
                     print("error occurr, nor 55 start:", data[0])
                     break
                 if data[1] == 83:
-                    self.angle_x = int.from_bytes(data[2:4].reverse(), byteorder='little')/32768*180
-                    self.angle_y = int.from_bytes(data[4:6].reverse(), byteorder='little')/32768*180
-                    self.angle_z = int.from_bytes(data[6:8].reverse(), byteorder='little')/32768*180
+		    bytes_x = data[2:4]
+		    bytes_y = data[4:6]
+		    bytes_z = data[6:8]
+		    bytes_x.reverse()
+		    bytes_y.reverse()
+		    bytes_z.reverse()
+                    self.angle_x = int.from_bytes(bytes_x, byteorder='little')/32768*180
+                    self.angle_y = int.from_bytes(bytes_y, byteorder='little')/32768*180
+                    self.angle_z = int.from_bytes(bytes_z.reverse(), byteorder='little')/32768*180
                     print("Angle output:{}, {}, {}".format(self.angle_x, self.angle_y, self.angle_z))
                 else:
                     print(data)
